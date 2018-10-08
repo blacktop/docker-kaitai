@@ -1,3 +1,5 @@
 build
 *.tgz
 *.bu
+*.pyc
+kernelcache.release.iphone11.decompressed

@@ -24,6 +24,20 @@ blacktop/kaitai          0.8                 357MB
 docker run --rm -v `pwd`:/output blacktop/kaitai:0.8 -t python executable/mach_o.ksy --outdir /output
 ```
 
+Now you can use the output in python
+
+```python
+import mach_o
+
+m = mach_o.MachO.from_file('kernelcache.release.iphone11.decompressed')
+
+print('CPU: {}, subtype: {}'.format(m.header.cputype.name.upper(), m.header.cpusubtype))
+```
+
+```bash
+CPU: ARM64, subtype: 2
+```
+
 ### Start WebIDE
 
 ```bash

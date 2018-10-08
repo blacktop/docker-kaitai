@@ -1423,6 +1423,13 @@ class MachO(KaitaiStruct):
             self.major = self._io.read_u1()
             self.release = self._io.read_u1()
 
+        def __str__(self):
+            return '{}.{}.{}'.format(
+                self.major,
+                self.minor,
+                self.release,
+            )
+
 
     class EncryptionInfoCommand(KaitaiStruct):
         def __init__(self, _io, _parent=None, _root=None):
