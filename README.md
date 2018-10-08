@@ -21,7 +21,7 @@ blacktop/kaitai          0.8                 303MB
 ## Getting Started
 
 ```
-$ docker run --rm -v `pwd`:/usr/share/kaitai-struct blacktop/kaitai:0.8 -t python mach_o.ksy
+$ docker run --rm -v `pwd`:/output blacktop/kaitai:0.8 -t python executable/mach_o.ksy --outdir /output
 ```
 
 ## Issues

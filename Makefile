@@ -29,7 +29,8 @@ tags:
 
 .PHONY: test
 test: ## Test docker image
-	docker run --rm -v $(PWD):/usr/share/kaitai-struct $(ORG)/$(NAME):$(BUILD) -t python executable/mach_o.ksy
+	docker run -it --rm -v $(PWD):/output $(ORG)/$(NAME):$(BUILD) -t python executable/mach_o.ksy --outdir /output
+	docker run -it --rm -v $(PWD):/output $(ORG)/$(NAME):$(BUILD) -t go executable/mach_o.ksy --outdir /output
 
 .PHONY: tar
 tar: ## Export tar of docker image
