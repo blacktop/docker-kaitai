@@ -32,6 +32,11 @@ test: ## Test docker image
 	docker run -it --rm -v $(PWD):/output $(ORG)/$(NAME):$(BUILD) -t python executable/mach_o.ksy --outdir /output
 	docker run -it --rm -v $(PWD):/output $(ORG)/$(NAME):$(BUILD) -t go executable/mach_o.ksy --outdir /output
 
+.PHONY: test_web
+test_web: ## Test kaitai webide
+	docker run --rm --name webide -p 8000:8000 -w /kaitai/webide --entrypoint python blacktop/kaitai:0.8 -mSimpleHTTPServer
+	open http://127.0.0.1:8000
+
 .PHONY: tar
 tar: ## Export tar of docker image
 	docker save $(ORG)/$(NAME):$(BUILD) -o $(NAME).tar
@@ -43,7 +48,7 @@ push: build ## Push docker image to docker registry
 
 .PHONY: ssh
 ssh: ## SSH into docker image
-	@docker run --init -it --rm --entrypoint=bash $(ORG)/$(NAME):$(BUILD)
+	@docker run --init -it --rm --entrypoint=bash -p 8000:8000 $(ORG)/$(NAME):$(BUILD)
 
 .PHONY: circle
 circle: ci-size ## Get docker image size from CircleCI
