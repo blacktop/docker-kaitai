@@ -3,11 +3,11 @@ jobs:
   build:
     working_directory: /app
     docker:
-      - image: docker:17.06.0-ce-git
+      - image: docker:18.03.1-ce-git
     steps:
       - checkout
       - setup_remote_docker:
-          version: 17.06.0-ce
+          version: 18.03.1-ce
       - run:
           name: Install dependencies
           command: |
@@ -25,7 +25,6 @@ jobs:
       - run:
           name: Build application Docker image
           command: |
-            cd $(cat LATEST)
             docker version
             docker build --cache-from=app -t app .
       - run:
@@ -48,4 +47,4 @@ jobs:
           name: Run Kaitai
           command: |
             set -x
-            docker run app
+            docker run app -t python executable/mach_o.ksy
