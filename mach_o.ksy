@@ -57,7 +57,7 @@ enums:
     0x8: bundle      # dynamically bound bundle file
     0x9: dylib_stub  # shared library stub for static linking only, no section contents
     0xa: dsym        # companion file with only debug sections
-    0xb: kext_bundle # x86_64 kexts    
+    0xb: kext_bundle # x86_64 kexts
   load_command_type:
     # http://opensource.apple.com//source/xnu/xnu-1456.1.26/EXTERNAL_HEADERS/mach-o/loader.h
     0x80000000: req_dyld
@@ -111,6 +111,8 @@ enums:
     0x2E      : linker_optimization_hint
     0x2F      : version_min_tvos
     0x30      : version_min_watchos
+    0x31      : note
+    0x32      : build_version
 types:
   macho_flags:
     params:
@@ -241,6 +243,7 @@ types:
             'load_command_type::version_min_iphoneos'    : version_min_command
             'load_command_type::version_min_tvos'        : version_min_command
             'load_command_type::version_min_watchos'     : version_min_command
+            'load_command_type::build_version'           : build_version_command
             'load_command_type::source_version'          : source_version_command
             'load_command_type::main'                    : entry_point_command
             'load_command_type::load_dylib'              : dylib_command
@@ -348,7 +351,7 @@ types:
           ((b9  % 128) << 56) + ((b8 & 0x80 == 0) ? 0 :
           ((b10 % 128) << 63))))))))))
         -webide-parse-mode: eager
-    -webide-representation: "{value:dec}"  
+    -webide-representation: "{value:dec}"
   segment_command_64:
     seq:
       - id: segname
@@ -893,6 +896,16 @@ types:
       - id: sdk
         type: version
     -webide-representation: 'v:{version}, r:{reserved}'
+  build_version_command:
+    seq:
+      - id: platform
+        type: u4
+      - id: minos
+        type: u4
+      - id: sdk
+        type: u4
+      - id: ntools
+        type: u4
   source_version_command:
     seq:
       - id: version
@@ -950,7 +963,7 @@ types:
         pos: data_off
         type: cs_blob
         size: data_size
-    -webide-representation: 'offs={data_off}, size={data_size}'        
+    -webide-representation: 'offs={data_off}, size={data_size}'
   cs_blob:
     seq:
       - id: magic
