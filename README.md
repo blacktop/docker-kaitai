@@ -1,6 +1,6 @@
 # docker-kaitai
 
-[![CircleCI](https://circleci.com/gh/blacktop/docker-kaitai.png?style=shield)](https://circleci.com/gh/blacktop/docker-kaitai) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/elasticsearch.svg)](https://hub.docker.com/r/blacktop/elasticsearch/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/elasticsearch.svg)](https://hub.docker.com/r/blacktop/elasticsearch/) [![Docker Image](https://img.shields.io/badge/docker%20image-127MB-blue.svg)](https://hub.docker.com/r/blacktop/elasticsearch/)
+[![CircleCI](https://circleci.com/gh/blacktop/docker-kaitai.png?style=shield)](https://circleci.com/gh/blacktop/docker-kaitai) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/kaitai.svg)](https://hub.docker.com/r/blacktop/kaitai/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/kaitai.svg)](https://hub.docker.com/r/blacktop/kaitai/) [![Docker Image](https://img.shields.io/badge/docker%20image-127MB-blue.svg)](https://hub.docker.com/r/blacktop/kaitai/)
 
 > Kaitai Struct Docker Image
 
