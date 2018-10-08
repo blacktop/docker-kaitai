@@ -8,7 +8,7 @@
 
 ## Dependencies
 
-- [ubuntu:bionic](https://hub.docker.com/_/ubuntu/)
+- [openjdk:jre-slim](https://hub.docker.com/_/openjdk/)
 
 ## Image Tags
 
