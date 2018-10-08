@@ -29,6 +29,7 @@ RUN buildDeps='wget gnupg unzip git' \
 WORKDIR /usr/share/kaitai-struct
 
 COPY mach_o.ksy /usr/share/kaitai-struct/executable/
+COPY mach_o.ksy /kaitai/webide/formats/executable/
 
 EXPOSE 8000
 

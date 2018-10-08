@@ -22,97 +22,97 @@ enums:
     0xCEFAEDFE: macho_le_x86 # MH_CIGAM:    mach-o, little-endian, x86
     0xFEEDFACF: macho_be_x64 # MH_MAGIC_64: mach-o, big-endian,    x64
     0xCFFAEDFE: macho_le_x64 # MH_CIGAM_64: mach-o, little-endian, x64
-    0xCAFEBABE: fat_be       # FAT_MAGIC:   fat,    big-endian
-    0xBEBAFECA: fat_le       # FAT_CIGAM:   fat,    little-endian
+    0xCAFEBABE: fat_be # FAT_MAGIC:   fat,    big-endian
+    0xBEBAFECA: fat_le # FAT_CIGAM:   fat,    little-endian
   cpu_type:
     0xffffffff: any
-    1:          vax
-    2:          romp
-    4:          ns32032
-    5:          ns32332
-    7:          i386
-    8:          mips
-    9:          ns32532
-    11:         hppa
-    12:         arm
-    13:         mc88000
-    14:         sparc
-    15:         i860
-    16:         i860_little
-    17:         rs6000
-    18:         powerpc
-    0x1000000:  abi64     # flag
-    0x1000007:  x86_64    # abi64 | i386
-    0x1000012:  powerpc64 # abi64 | powerpc
-    0x100000c:  arm64     # abi64 | arm
+    1: vax
+    2: romp
+    4: ns32032
+    5: ns32332
+    7: i386
+    8: mips
+    9: ns32532
+    11: hppa
+    12: arm
+    13: mc88000
+    14: sparc
+    15: i860
+    16: i860_little
+    17: rs6000
+    18: powerpc
+    0x1000000: abi64 # flag
+    0x1000007: x86_64 # abi64 | i386
+    0x1000012: powerpc64 # abi64 | powerpc
+    0x100000c: arm64 # abi64 | arm
   file_type:
     # http://opensource.apple.com//source/xnu/xnu-1456.1.26/EXTERNAL_HEADERS/mach-o/loader.h
-    0x1: object      # relocatable object file
-    0x2: execute     # demand paged executable file
-    0x3: fvmlib      # fixed VM shared library file
-    0x4: core        # core file
-    0x5: preload     # preloaded executable file
-    0x6: dylib       # dynamically bound shared library
-    0x7: dylinker    # dynamic link editor
-    0x8: bundle      # dynamically bound bundle file
-    0x9: dylib_stub  # shared library stub for static linking only, no section contents
-    0xa: dsym        # companion file with only debug sections
+    0x1: object # relocatable object file
+    0x2: execute # demand paged executable file
+    0x3: fvmlib # fixed VM shared library file
+    0x4: core # core file
+    0x5: preload # preloaded executable file
+    0x6: dylib # dynamically bound shared library
+    0x7: dylinker # dynamic link editor
+    0x8: bundle # dynamically bound bundle file
+    0x9: dylib_stub # shared library stub for static linking only, no section contents
+    0xa: dsym # companion file with only debug sections
     0xb: kext_bundle # x86_64 kexts
   load_command_type:
     # http://opensource.apple.com//source/xnu/xnu-1456.1.26/EXTERNAL_HEADERS/mach-o/loader.h
     0x80000000: req_dyld
-    0x1       : segment        # segment of this file to be mapped
-    0x2       : symtab         # link-edit stab symbol table info
-    0x3       : symseg         # link-edit gdb symbol table info (obsolete)
-    0x4       : thread         # thread
-    0x5       : unix_thread    # unix thread (includes a stack)
-    0x6       : load_fvm_lib   # load a specified fixed VM shared library
-    0x7       : id_fvm_lib     # fixed VM shared library identification
-    0x8       : ident          # object identification info (obsolete)
-    0x9       : fvm_file       # fixed VM file inclusion (internal use)
-    0xa       : prepage        # prepage command (internal use)
-    0xb       : dysymtab       # dynamic link-edit symbol table info
-    0xc       : load_dylib     # load a dynamically linked shared library
-    0xd       : id_dylib       # dynamically linked shared lib ident
-    0xe       : load_dylinker  # load a dynamic linker
-    0xf       : id_dylinker    # dynamic linker identification
-    0x10      : prebound_dylib # modules prebound for a dynamically
+    0x1: segment # segment of this file to be mapped
+    0x2: symtab # link-edit stab symbol table info
+    0x3: symseg # link-edit gdb symbol table info (obsolete)
+    0x4: thread # thread
+    0x5: unix_thread # unix thread (includes a stack)
+    0x6: load_fvm_lib # load a specified fixed VM shared library
+    0x7: id_fvm_lib # fixed VM shared library identification
+    0x8: ident # object identification info (obsolete)
+    0x9: fvm_file # fixed VM file inclusion (internal use)
+    0xa: prepage # prepage command (internal use)
+    0xb: dysymtab # dynamic link-edit symbol table info
+    0xc: load_dylib # load a dynamically linked shared library
+    0xd: id_dylib # dynamically linked shared lib ident
+    0xe: load_dylinker # load a dynamic linker
+    0xf: id_dylinker # dynamic linker identification
+    0x10: prebound_dylib # modules prebound for a dynamically
     # linked shared library
-    0x11      : routines           # image routines
-    0x12      : sub_framework      # sub framework
-    0x13      : sub_umbrella       # sub umbrella
-    0x14      : sub_client         # sub client
-    0x15      : sub_library        # sub library
-    0x16      : twolevel_hints     # two-level namespace lookup hints
-    0x17      : prebind_cksum      # prebind checksum
-    0x80000018: load_weak_dylib    # load a dynamically linked shared library that is allowed to be missing (all symbols are weak imported)
-    0x19      : segment_64         # 64-bit segment of this file to be mapped
-    0x1a      : routines_64        # 64-bit image routines
-    0x1b      : uuid               # the uuid
-    0x8000001c: rpath              # runpath additions
-    0x1d      : code_signature     # local of code signature
-    0x1e      : segment_split_info # local of info to split segments
-    0x8000001f: reexport_dylib     # load and re-export dylib
-    0x20      : lazy_load_dylib    # delay load of dylib until first use
-    0x21      : encryption_info    # encrypted segment information
-    0x22      : dyld_info          # compressed dyld information
-    0x80000022: dyld_info_only     # compressed dyld information only
+    0x11: routines # image routines
+    0x12: sub_framework # sub framework
+    0x13: sub_umbrella # sub umbrella
+    0x14: sub_client # sub client
+    0x15: sub_library # sub library
+    0x16: twolevel_hints # two-level namespace lookup hints
+    0x17: prebind_cksum # prebind checksum
+    0x80000018: load_weak_dylib # load a dynamically linked shared library that is allowed to be missing (all symbols are weak imported)
+    0x19: segment_64 # 64-bit segment of this file to be mapped
+    0x1a: routines_64 # 64-bit image routines
+    0x1b: uuid # the uuid
+    0x8000001c: rpath # runpath additions
+    0x1d: code_signature # local of code signature
+    0x1e: segment_split_info # local of info to split segments
+    0x8000001f: reexport_dylib # load and re-export dylib
+    0x20: lazy_load_dylib # delay load of dylib until first use
+    0x21: encryption_info # encrypted segment information
+    0x22: dyld_info # compressed dyld information
+    0x80000022: dyld_info_only # compressed dyld information only
     0x80000023: load_upward_dylib
-    0x24      : version_min_macosx
-    0x25      : version_min_iphoneos
-    0x26      : function_starts
-    0x27      : dyld_environment
+    0x24: version_min_macosx
+    0x25: version_min_iphoneos
+    0x26: function_starts
+    0x27: dyld_environment
     0x80000028: main
-    0x29      : data_in_code
-    0x2A      : source_version
-    0x2B      : dylib_code_sign_drs
-    0x2C      : encryption_info_64
-    0x2D      : linker_option
-    0x2E      : linker_optimization_hint
-    0x2F      : version_min_tvos
-    0x30      : version_min_watchos
-    0x31      : note
-    0x32      : build_version
+    0x29: data_in_code
+    0x2A: source_version
+    0x2B: dylib_code_sign_drs
+    0x2C: encryption_info_64
+    0x2D: linker_option
+    0x2E: linker_optimization_hint
+    0x2F: version_min_tvos
+    0x30: version_min_watchos
+    0x31: note
+    0x32: build_version
 types:
   macho_flags:
     params:
@@ -230,46 +230,46 @@ types:
         type:
           switch-on: type
           cases:
-            'load_command_type::segment_64'              : segment_command_64
-            'load_command_type::dyld_info'               : dyld_info_command
-            'load_command_type::dyld_info_only'          : dyld_info_command
-            'load_command_type::symtab'                  : symtab_command
-            'load_command_type::dysymtab'                : dysymtab_command
-            'load_command_type::load_dylinker'           : dylinker_command
-            'load_command_type::id_dylinker'             : dylinker_command
-            'load_command_type::dyld_environment'        : dylinker_command
-            'load_command_type::uuid'                    : uuid_command
-            'load_command_type::version_min_macosx'      : version_min_command
-            'load_command_type::version_min_iphoneos'    : version_min_command
-            'load_command_type::version_min_tvos'        : version_min_command
-            'load_command_type::version_min_watchos'     : version_min_command
-            'load_command_type::build_version'           : build_version_command
-            'load_command_type::source_version'          : source_version_command
-            'load_command_type::main'                    : entry_point_command
-            'load_command_type::load_dylib'              : dylib_command
-            'load_command_type::load_upward_dylib'       : dylib_command
-            'load_command_type::id_dylib'                : dylib_command
-            'load_command_type::load_weak_dylib'         : dylib_command
-            'load_command_type::lazy_load_dylib'         : dylib_command
-            'load_command_type::reexport_dylib'          : dylib_command
-            'load_command_type::rpath'                   : rpath_command
-            'load_command_type::function_starts'         : linkedit_data_command
-            'load_command_type::data_in_code'            : linkedit_data_command
-            'load_command_type::dylib_code_sign_drs'     : linkedit_data_command
-            'load_command_type::linker_optimization_hint': linkedit_data_command
-            'load_command_type::segment_split_info'      : linkedit_data_command
-            'load_command_type::code_signature'          : code_signature_command
-            'load_command_type::encryption_info_64'      : encryption_info_command
-            'load_command_type::encryption_info'         : encryption_info_command
-            'load_command_type::twolevel_hints'          : twolevel_hints_command
-            'load_command_type::linker_option'           : linker_option_command
-            'load_command_type::sub_framework'           : sub_command
-            'load_command_type::sub_umbrella'            : sub_command
-            'load_command_type::sub_client'              : sub_command
-            'load_command_type::sub_library'             : sub_command
-            'load_command_type::routines_64'             : routines_command_64
-            'load_command_type::routines'                : routines_command
-    -webide-representation: '{type}: {body}'
+            "load_command_type::segment_64": segment_command_64
+            "load_command_type::dyld_info": dyld_info_command
+            "load_command_type::dyld_info_only": dyld_info_command
+            "load_command_type::symtab": symtab_command
+            "load_command_type::dysymtab": dysymtab_command
+            "load_command_type::load_dylinker": dylinker_command
+            "load_command_type::id_dylinker": dylinker_command
+            "load_command_type::dyld_environment": dylinker_command
+            "load_command_type::uuid": uuid_command
+            "load_command_type::version_min_macosx": version_min_command
+            "load_command_type::version_min_iphoneos": version_min_command
+            "load_command_type::version_min_tvos": version_min_command
+            "load_command_type::version_min_watchos": version_min_command
+            "load_command_type::build_version": build_version_command
+            "load_command_type::source_version": source_version_command
+            "load_command_type::main": entry_point_command
+            "load_command_type::load_dylib": dylib_command
+            "load_command_type::load_upward_dylib": dylib_command
+            "load_command_type::id_dylib": dylib_command
+            "load_command_type::load_weak_dylib": dylib_command
+            "load_command_type::lazy_load_dylib": dylib_command
+            "load_command_type::reexport_dylib": dylib_command
+            "load_command_type::rpath": rpath_command
+            "load_command_type::function_starts": linkedit_data_command
+            "load_command_type::data_in_code": linkedit_data_command
+            "load_command_type::dylib_code_sign_drs": linkedit_data_command
+            "load_command_type::linker_optimization_hint": linkedit_data_command
+            "load_command_type::segment_split_info": linkedit_data_command
+            "load_command_type::code_signature": code_signature_command
+            "load_command_type::encryption_info_64": encryption_info_command
+            "load_command_type::encryption_info": encryption_info_command
+            "load_command_type::twolevel_hints": twolevel_hints_command
+            "load_command_type::linker_option": linker_option_command
+            "load_command_type::sub_framework": sub_command
+            "load_command_type::sub_umbrella": sub_command
+            "load_command_type::sub_client": sub_command
+            "load_command_type::sub_library": sub_command
+            "load_command_type::routines_64": routines_command_64
+            "load_command_type::routines": routines_command
+    -webide-representation: "{type}: {body}"
   vm_prot:
     seq:
       - id: strip_read
@@ -422,23 +422,23 @@ types:
             type:
               switch-on: sect_name
               cases:
-                "'__cstring'":        string_list
-                "'__objc_methname'":  string_list
+                "'__cstring'": string_list
+                "'__objc_methname'": string_list
                 "'__objc_classname'": string_list
-                "'__objc_methtype'":  string_list
-                "'__nl_symbol_ptr'":  pointer_list
-                "'__got'":            pointer_list
-                "'__la_symbol_ptr'":  pointer_list
-                "'__cfstring'":       cf_string_list
+                "'__objc_methtype'": string_list
+                "'__nl_symbol_ptr'": pointer_list
+                "'__got'": pointer_list
+                "'__la_symbol_ptr'": pointer_list
+                "'__cfstring'": cf_string_list
                 "'__objc_classlist'": pointer_list
                 "'__objc_nlclslist'": pointer_list
                 "'__objc_protolist'": pointer_list
                 "'__objc_imageinfo'": pointer_list
-                "'__objc_selrefs'":   pointer_list
+                "'__objc_selrefs'": pointer_list
                 "'__objc_protorefs'": pointer_list
                 "'__objc_classrefs'": pointer_list
                 "'__objc_superrefs'": pointer_list
-                "'__eh_frame'":       eh_frame
+                "'__eh_frame'": eh_frame
         types:
           # https://reviews.llvm.org/D15502#b8fe88d5
           eh_frame:
@@ -462,7 +462,7 @@ types:
                   switch-on: id
                   cases:
                     0: cie
-            -webide-representation: '{body}'
+            -webide-representation: "{body}"
             types:
               char_chain:
                 seq:
@@ -491,8 +491,8 @@ types:
                     type: u1
                   - id: augmentation
                     type: augmentation_entry
-                    if: 'aug_str.chr == 122'
-                -webide-representation: 'v:{version:dec} aug:{augmentation_string} code:{code_alignment_factor} data:{data_alignment_factor} returnReg:{return_address_register}'
+                    if: "aug_str.chr == 122"
+                -webide-representation: "v:{version:dec} aug:{augmentation_string} code:{code_alignment_factor} data:{data_alignment_factor} returnReg:{return_address_register}"
               augmentation_entry:
                 seq:
                   - id: length
@@ -527,8 +527,8 @@ types:
               - id: items
                 type: cf_string
                 repeat: eos
-        -webide-representation: '{sect_name}: offs={offset}, size={size}'
-    -webide-representation: '{segname} ({initprot}): offs={fileoff}, size={filesize}'
+        -webide-representation: "{sect_name}: offs={offset}, size={size}"
+    -webide-representation: "{segname} ({initprot}): offs={fileoff}, size={filesize}"
   dyld_info_command:
     seq:
       - id: rebase_off
@@ -551,7 +551,7 @@ types:
         type: u4
       - id: export_size
         type: u4
-    -webide-representation: 'rebase={rebase_off}, bind={bind_off}, weakBind={weak_bind_off}, lazyBind={lazy_bind_off}, export={export_off}'
+    -webide-representation: "rebase={rebase_off}, bind={bind_off}, weakBind={weak_bind_off}, lazyBind={lazy_bind_off}, export={export_off}"
     instances:
       rebase:
         io: _root._io
@@ -819,17 +819,17 @@ types:
         -orig-id: ptr
         type: strz
         encoding: UTF-8
-    -webide-representation: '{value}'
+    -webide-representation: "{value}"
   dylinker_command:
     seq:
       - id: name
         type: lc_str
-    -webide-representation: '{name}'
+    -webide-representation: "{name}"
   uuid_command:
     seq:
       - id: uuid
         size: 16
-    -webide-representation: 'uuid={uuid}'
+    -webide-representation: "uuid={uuid}"
   version:
     seq:
       - id: p1
@@ -840,7 +840,7 @@ types:
         type: u1
       - id: release
         type: u1
-    -webide-representation: '{major:dec}.{minor:dec}'
+    -webide-representation: "{major:dec}.{minor:dec}.{release:dec}"
   encryption_info_command:
     seq:
       - id: cryptoff
@@ -875,42 +875,66 @@ types:
         type: lc_str
   routines_command_64:
     seq:
-        - id: init_address
-          type: u8
-        - id: init_module
-          type: u8
-        - id: reserved
-          size: 48 # u8 * 6
+      - id: init_address
+        type: u8
+      - id: init_module
+        type: u8
+      - id: reserved
+        size: 48 # u8 * 6
   routines_command:
     seq:
-        - id: init_address
-          type: u4
-        - id: init_module
-          type: u4
-        - id: reserved
-          size: 24 # u4 * 6
+      - id: init_address
+        type: u4
+      - id: init_module
+        type: u4
+      - id: reserved
+        size: 24 # u4 * 6
   version_min_command:
     seq:
       - id: version
         type: version
       - id: sdk
         type: version
-    -webide-representation: 'v:{version}, r:{reserved}'
+    -webide-representation: "v:{version}, r:{reserved}"
   build_version_command:
     seq:
       - id: platform
         type: u4
+        enum: platform_type
       - id: minos
-        type: u4
+        type: version
       - id: sdk
-        type: u4
+        type: version
       - id: ntools
         type: u4
+    -webide-representation: "{platform} {minos}, SDK:{sdk}"
+    enums:
+      platform_type:
+        1: macos
+        2: ios # iOS
+        3: tvos
+        4: watchos
+        5: bridgeos
+        6: ios_mac
+        7: ios_simulator
+        8: tvos_simulator
+        9: watchos_simulator
   source_version_command:
     seq:
-      - id: version
+      - id: version_packed
         type: u8
-    -webide-representation: 'v:{version:dec}'
+    -webide-representation: "v:{major:dec}.{minor:dec}.{patch_1:dec}.{patch_2:dec}.{patch_3:dec}"
+    instances:
+      major:
+        value: version_packed >> 40
+      minor:
+        value: (version_packed >> 30) & 0x3ff
+      patch_1:
+        value: (version_packed >> 20) & 0x3ff
+      patch_2:
+        value: (version_packed >> 10) & 0x3ff
+      patch_3:
+        value: version_packed & 0x3ff
   entry_point_command:
     seq:
       - id: entry_off
@@ -919,7 +943,7 @@ types:
       - id: stack_size
         -orig-id: stacksize
         type: u8
-    -webide-representation: 'entry_off={entry_off}, stack_size={stack_size}'
+    -webide-representation: "entry_off={entry_off}, stack_size={stack_size}"
   dylib_command:
     seq:
       - id: name_offset
@@ -933,7 +957,7 @@ types:
       - id: name
         type: strz
         encoding: utf-8
-    -webide-representation: '{name}'
+    -webide-representation: "{name}"
   rpath_command:
     seq:
       - id: path_offset
@@ -941,7 +965,7 @@ types:
       - id: path
         type: strz
         encoding: utf-8
-    -webide-representation: '{path}'
+    -webide-representation: "{path}"
   linkedit_data_command:
     seq:
       - id: data_off
@@ -950,7 +974,7 @@ types:
       - id: data_size
         -orig-id: datasize
         type: u4
-    -webide-representation: 'offs={data_off}, size={data_size}'
+    -webide-representation: "offs={data_off}, size={data_size}"
   code_signature_command:
     seq:
       - id: data_off
@@ -963,7 +987,7 @@ types:
         pos: data_off
         type: cs_blob
         size: data_size
-    -webide-representation: 'offs={data_off}, size={data_size}'
+    -webide-representation: "offs={data_off}, size={data_size}"
   cs_blob:
     seq:
       - id: magic
@@ -976,20 +1000,20 @@ types:
         type:
           switch-on: magic
           cases:
-            'cs_magic::requirement'       : requirement
-            'cs_magic::requirements'      : requirements
-            'cs_magic::code_directory'    : code_directory
-            'cs_magic::entitlement'       : entitlement
-            'cs_magic::blob_wrapper'      : blob_wrapper
-            'cs_magic::embedded_signature': super_blob
-            'cs_magic::detached_signature': super_blob
+            "cs_magic::requirement": requirement
+            "cs_magic::requirements": requirements
+            "cs_magic::code_directory": code_directory
+            "cs_magic::entitlement": entitlement
+            "cs_magic::blob_wrapper": blob_wrapper
+            "cs_magic::embedded_signature": super_blob
+            "cs_magic::detached_signature": super_blob
     enums:
       cs_magic:
-        0xfade0c00: requirement        # CSMAGIC_REQUIREMENT
-        0xfade0c01: requirements       # CSMAGIC_REQUIREMENTS
-        0xfade0c02: code_directory     # CSMAGIC_CODEDIRECTORY
-        0xfade7171: entitlement        # CSMAGIC_ENTITLEMENT
-        0xfade0b01: blob_wrapper       # CSMAGIC_BLOBWRAPPER
+        0xfade0c00: requirement # CSMAGIC_REQUIREMENT
+        0xfade0c01: requirements # CSMAGIC_REQUIREMENTS
+        0xfade0c02: code_directory # CSMAGIC_CODEDIRECTORY
+        0xfade7171: entitlement # CSMAGIC_ENTITLEMENT
+        0xfade0b01: blob_wrapper # CSMAGIC_BLOBWRAPPER
         0xfade0cc0: embedded_signature # CSMAGIC_EMBEDDED_SIGNATURE
         0xfade0cc1: detached_signature # CSMAGIC_DETACHED_SIGNATURE
     types:
@@ -1056,14 +1080,14 @@ types:
             type: cs_blob
         enums:
           csslot_type:
-            0:       code_directory             # CSSLOT_CODEDIRECTORY
-            1:       info_slot                  # CSSLOT_INFOSLOT
-            2:       requirements               # CSSLOT_REQUIREMENTS
-            3:       resource_dir               # CSSLOT_RESOURCEDIR
-            4:       application                # CSSLOT_APPLICATION
-            5:       entitlements               # CSSLOT_ENTITLEMENTS
-            0x1000:  alternate_code_directories # CSSLOT_ALTERNATE_CODEDIRECTORIES
-            0x10000: signature_slot             # CSSLOT_SIGNATURESLOT
+            0: code_directory # CSSLOT_CODEDIRECTORY
+            1: info_slot # CSSLOT_INFOSLOT
+            2: requirements # CSSLOT_REQUIREMENTS
+            3: resource_dir # CSSLOT_RESOURCEDIR
+            4: application # CSSLOT_APPLICATION
+            5: entitlements # CSSLOT_ENTITLEMENTS
+            0x1000: alternate_code_directories # CSSLOT_ALTERNATE_CODEDIRECTORIES
+            0x10000: signature_slot # CSSLOT_SIGNATURESLOT
       data:
         seq:
           - id: length
@@ -1080,7 +1104,7 @@ types:
             enum: op
           - id: data
             type: data
-            if: 'match_op != op::exists'
+            if: "match_op != op::exists"
         enums:
           op:
             0: exists
@@ -1104,40 +1128,40 @@ types:
               cases:
                 #'op_enum::false'               : 'false'
                 #'op_enum::true'                : 'true'
-                'op_enum::ident'               : ident_expr
+                "op_enum::ident": ident_expr
                 #'op_enum::apple_anchor'        : 'anchor apple'
-                'op_enum::anchor_hash'         : anchor_hash_expr
-                'op_enum::info_key_value'      : data
-                'op_enum::and_op'              : and_expr
-                'op_enum::or_op'               : or_expr
-                'op_enum::cd_hash'             : data
-                'op_enum::not_op'              : expr
-                'op_enum::info_key_field'      : info_key_field_expr
-                'op_enum::cert_field'          : cert_field_expr
-                'op_enum::trusted_cert'        : cert_slot_expr
+                "op_enum::anchor_hash": anchor_hash_expr
+                "op_enum::info_key_value": data
+                "op_enum::and_op": and_expr
+                "op_enum::or_op": or_expr
+                "op_enum::cd_hash": data
+                "op_enum::not_op": expr
+                "op_enum::info_key_field": info_key_field_expr
+                "op_enum::cert_field": cert_field_expr
+                "op_enum::trusted_cert": cert_slot_expr
                 #'op_enum::trusted_certs'       : 'anchor trusted'
-                'op_enum::cert_generic'        : cert_generic_expr
-                'op_enum::apple_generic_anchor': apple_generic_anchor_expr
-                'op_enum::entitlement_field'   : entitlement_field_expr
+                "op_enum::cert_generic": cert_generic_expr
+                "op_enum::apple_generic_anchor": apple_generic_anchor_expr
+                "op_enum::entitlement_field": entitlement_field_expr
         enums:
           op_enum:
-            0: 'false'               # unconditionally false
-            1: 'true'                # unconditionally true
-            2: ident                 # match canonical code [string]
-            3: apple_anchor          # signed by Apple as Apple's product ("anchor apple")
-            4: anchor_hash           # match anchor [cert hash]
-            5: info_key_value        # *legacy* - use opInfoKeyField [key; value]
-            6: and_op                # binary prefix expr AND expr [expr; expr]
-            7: or_op                 # binary prefix expr OR expr
-            8: cd_hash               # match hash of CodeDirectory directly
-            9: not_op                # logical inverse
-            10: info_key_field       # Info.plist key field [string; match suffix]
-            11: cert_field           # Certificate field [cert index; field name; match suffix]
-            12: trusted_cert         # require trust settings to approve one particular cert [cert index]
-            13: trusted_certs        # require trust settings to approve the cert chain
-            14: cert_generic         # Certificate component by OID [cert index; oid; match suffix]
+            0: "false" # unconditionally false
+            1: "true" # unconditionally true
+            2: ident # match canonical code [string]
+            3: apple_anchor # signed by Apple as Apple's product ("anchor apple")
+            4: anchor_hash # match anchor [cert hash]
+            5: info_key_value # *legacy* - use opInfoKeyField [key; value]
+            6: and_op # binary prefix expr AND expr [expr; expr]
+            7: or_op # binary prefix expr OR expr
+            8: cd_hash # match hash of CodeDirectory directly
+            9: not_op # logical inverse
+            10: info_key_field # Info.plist key field [string; match suffix]
+            11: cert_field # Certificate field [cert index; field name; match suffix]
+            12: trusted_cert # require trust settings to approve one particular cert [cert index]
+            13: trusted_certs # require trust settings to approve the cert chain
+            14: cert_generic # Certificate component by OID [cert index; oid; match suffix]
             15: apple_generic_anchor # signed by Apple in any capacity ("anchor apple generic")
-            16: entitlement_field    # entitlement dictionary field [string; match suffix]
+            16: entitlement_field # entitlement dictionary field [string; match suffix]
           cert_slot:
             0xffffffff: anchor_cert
             0: left_cert
@@ -1210,7 +1234,7 @@ types:
               - id: match
                 type: match
             -webide-representation: "{cert_slot}[{data.value:hex}] {match}"
-        -webide-representation: '{data}'
+        -webide-representation: "{data}"
       requirement:
         seq:
           - id: kind
@@ -1235,10 +1259,10 @@ types:
             pos: offset - 8
         enums:
           requirement_type:
-            1: host        # kSecHostRequirementType
-            2: guest       # kSecGuestRequirementType
-            3: designated  # kSecDesignatedRequirementtype
-            4: library     # kSecLibraryRequirementType
+            1: host # kSecHostRequirementType
+            2: guest # kSecGuestRequirementType
+            3: designated # kSecDesignatedRequirementtype
+            4: library # kSecLibraryRequirementType
       requirements:
         seq:
           - id: count
