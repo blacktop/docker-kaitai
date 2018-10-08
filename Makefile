@@ -2,6 +2,7 @@ REPO=blacktop/kaitai
 ORG=blacktop
 NAME=kaitai
 BUILD ?=$(shell cat LATEST)
+LATEST ?=$(shell cat LATEST)
 
 
 all: build size test
@@ -27,11 +28,8 @@ tags:
 	docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}" $(ORG)/$(NAME)
 
 .PHONY: test
-test: stop ## Test docker image
-	docker run -d --name $(NAME) -p 9200:9200 -e cluster.name=testcluster $(ORG)/$(NAME):$(BUILD); sleep 20;
-	docker logs $(NAME)
-	http localhost:9200 | jq .cluster_name
-	docker rm -f $(NAME)
+test: ## Test docker image
+	docker run --rm -v $(PWD):/usr/share/kaitai-struct $(ORG)/$(NAME):$(BUILD) -t python mach_o.ksy
 
 .PHONY: tar
 tar: ## Export tar of docker image
@@ -42,17 +40,9 @@ push: build ## Push docker image to docker registry
 	@echo "===> Pushing $(ORG)/$(NAME):$(BUILD) to docker hub..."
 	@docker push $(ORG)/$(NAME):$(BUILD)
 
-.PHONY: run
-run: stop ## Run docker container
-	@docker run --init -it --rm --name $(NAME) -p 9200:9200 -e ELASTIC_PASSWORD=password $(ORG)/$(NAME):$(BUILD)
-
 .PHONY: ssh
 ssh: ## SSH into docker image
 	@docker run --init -it --rm --entrypoint=bash $(ORG)/$(NAME):$(BUILD)
-
-.PHONY: stop
-stop: ## Kill running docker containers
-	@docker rm -f $(NAME) || true
 
 .PHONY: circle
 circle: ci-size ## Get docker image size from CircleCI
@@ -70,7 +60,7 @@ ci-size: ci-build
 .PHONY: clean
 clean: ## Clean docker image and stop all running containers
 	docker-clean stop
-	docker rmi $(ORG)/$(NAME):$(BUILD) || true
+	docker image rm $(ORG)/$(NAME):$(BUILD) || true
 
 # Absolutely awesome: http://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
 help:

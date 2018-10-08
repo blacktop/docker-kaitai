@@ -1,6 +1,6 @@
 # docker-kaitai
 
-[![CircleCI](https://circleci.com/gh/blacktop/docker-kaitai.png?style=shield)](https://circleci.com/gh/blacktop/docker-kaitai) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/kaitai.svg)](https://hub.docker.com/r/blacktop/kaitai/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/kaitai.svg)](https://hub.docker.com/r/blacktop/kaitai/) [![Docker Image](https://img.shields.io/badge/docker%20image-513MB-blue.svg)](https://hub.docker.com/r/blacktop/kaitai/)
+[![CircleCI](https://circleci.com/gh/blacktop/docker-kaitai.png?style=shield)](https://circleci.com/gh/blacktop/docker-kaitai) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/kaitai.svg)](https://hub.docker.com/r/blacktop/kaitai/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/kaitai.svg)](https://hub.docker.com/r/blacktop/kaitai/) [![Docker Image](https://img.shields.io/badge/docker%20image-303MB-blue.svg)](https://hub.docker.com/r/blacktop/kaitai/)
 
 > Kaitai Struct Docker Image
 
@@ -14,8 +14,8 @@
 
 ```bash
 REPOSITORY               TAG                 SIZE
-blacktop/kaitai          latest              513MB
-blacktop/kaitai          0.8                 513MB
+blacktop/kaitai          latest              303MB
+blacktop/kaitai          0.8                 303MB
 ```
 
 ## Getting Started
