@@ -719,6 +719,16 @@ class MachO(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._platform = dict(
+                macos='macOS',
+                ios='iOS',
+                tvos='tvOS',
+                watchos='watchOS',
+                bridgeos='bridgeOS',
+                ios_mac='iOS-on-Mac',
+                ios_simulator='iOS Simulator',
+                tvos_simulator='tvOS Simulator',
+                watchos_simulator='watchOS Simulator')
             self._read()
 
         def _read(self):
@@ -727,6 +737,8 @@ class MachO(KaitaiStruct):
             self.sdk = self._root.Version(self._io, self, self._root)
             self.ntools = self._io.read_u4le()
 
+        def __str__(self):
+            return '{} {}, SDK: {}'.format(self._platform.get(self.platform.name), self.minos, self.sdk)
 
     class RoutinesCommand(KaitaiStruct):
         def __init__(self, _io, _parent=None, _root=None):
