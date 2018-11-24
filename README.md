@@ -26,7 +26,7 @@ docker run --rm -v `pwd`:/output blacktop/kaitai:0.8 -t python executable/mach_o
 
 Now you can use the output in python
 
-<a href="#"><img src="./docs/carbon.png" height="70%" width="70%" /></a>
+<a href="#"><img src="./docs/carbon.png" /></a>
 
 ```bash
 CPU: ARM64, subtype: 2
