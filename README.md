@@ -26,7 +26,7 @@ docker run --rm -v `pwd`:/output blacktop/kaitai:0.8 -t python executable/mach_o
 
 Now you can use the output in python
 
-![py](docs/carbon.svg)
+![py](docs/carbon.svg | width=400)
 
 ```bash
 CPU: ARM64, subtype: 2
